@@ -12,6 +12,7 @@ export interface GenerateRequest {
 
 export interface GeneratedResponse {
   "images": string[],
+  "prompt": string,
   "time": number,
   "status": number,
 }

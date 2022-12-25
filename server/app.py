@@ -31,16 +31,16 @@ args = parser.parse_args()
 def generate():
     json_data = request.get_json(force=True)
     
-    prompt = json_data["prompt"]
-    negative_prompt = json_data["negative_prompt"]
-    num_images = json_data["num_images"]
-    width = json_data["width"]
-    height = json_data["height"]
-    guidance_scale = json_data["guidance_scale"]
-    seed = json_data["seed"]
-    num_inference_steps = json_data["num_inference_steps"]
+    prompt = str(json_data["prompt"])
+    negative_prompt = str(json_data["negative_prompt"])
+    num_images = int(json_data["num_images"])
+    width = int(json_data["width"])
+    height = int(json_data["height"])
+    guidance_scale = float(json_data["guidance_scale"])
+    seed = int(json_data["seed"])
+    num_inference_steps = int(json_data["num_inference_steps"])
 
-    print("--> Started generation of: ", prompt)
+    print(f'--> Started generation of "{prompt}"')
 
     generated_imgs = stable_diff_model.generate_images(prompt, negative_prompt, num_images, width, height, guidance_scale, seed, num_inference_steps)
 
@@ -64,10 +64,11 @@ def generate():
 
         generated_images_encoded.append(img_encoded_with_format)
 
-    print("Created", num_images, "images from text prompt", prompt)
+    print(f'Created {num_images} images from text prompt "{prompt}"')
     
     response = {
         'generated_images': generated_images_encoded,
+        'prompt': prompt+" "+negative_prompt,
     }
 
     return jsonify(response)

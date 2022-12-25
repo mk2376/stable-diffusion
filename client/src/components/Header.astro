@@ -1,6 +1,6 @@
 ---
 
-
+import ResetParametersButton from './stable-diffusion-backend/ResetParametersButton';
 import logo from '/favicon.png';
 
 ---
@@ -15,9 +15,7 @@ import logo from '/favicon.png';
     </div>
 
     <div class="list-none flex justify-end items-center flex-1">
-      <button type="button" class="inline-block px-4 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
-        Reset parameters
-      </button>
+      <ResetParametersButton client:visible />
     </div>
 
   </div>

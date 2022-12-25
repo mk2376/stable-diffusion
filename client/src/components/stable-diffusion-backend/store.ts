@@ -11,7 +11,7 @@ export const serverReachableStore = atom(false);
 
 const generateRequestInit: GenerateRequest = {
   prompt: randomPrompt(),
-  negative_prompt: '',
+  negative_prompt: "",
   num_images: 1,
   width: 512, 
   height: 512,
@@ -36,6 +36,7 @@ export function generatedRequestStoreReset() {
 
 const generatedResponseInit: GeneratedResponse = {
   "images": [],
+  "prompt": "",
   "time": 0,
   "status": 0,
 }
@@ -46,10 +47,18 @@ export function generatedResponseStoreReset() {
   generatedResponseStore.set(generatedResponseInit)
 }
 
+// Loading
+
+export const generateLoadingStore = atom(false);
+
+// Loading
+
+export const generateLogoIconStore = atom(true);
+
 // Helpers
 
 function randomPrompt() {
-  return faker.lorem.text(); // words()
+  return faker.lorem.words(10); // words()
 }
 
 function randomSeed() {

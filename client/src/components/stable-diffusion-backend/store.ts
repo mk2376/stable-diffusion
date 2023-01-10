@@ -35,7 +35,7 @@ export function generatedRequestStoreReset() {
 // Response
 
 const generatedResponseInit: GeneratedResponse = {
-  "images": [],
+  "images": [""],
   "prompt": "",
   "time": 0,
   "status": 0,

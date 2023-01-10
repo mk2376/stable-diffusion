@@ -3,7 +3,7 @@ import Form from './DashboardForm';
 import Gallery from './DashboardGallery';
 import { serverReachableStore } from './store';
 
-export function Dashboard(props: {serverReachable: boolean, serverURL: string}) {
+export function Dashboard(props: {serverReachable: boolean, serverURLSSR: string, serverURLClient: string}) {
   serverReachableStore.set(props.serverReachable)
   const $serverReachableStore = useStore(serverReachableStore);
 
@@ -12,7 +12,7 @@ export function Dashboard(props: {serverReachable: boolean, serverURL: string}) 
       {$serverReachableStore ? 
         <div className="flex flex-row flex-wrap md:flex-nowrap gap-4 m-4">
           <div className="flex-none">
-            <Form serverURL={props.serverURL}/>
+            <Form serverURL={props.serverURLClient}/>
           </div>
           <div className='flex-auto'>
             <Gallery />
@@ -20,7 +20,7 @@ export function Dashboard(props: {serverReachable: boolean, serverURL: string}) 
         </div>
          : 
         <p className="flex items-center justify-center h-[80vh]">
-          Backend server is not reachable on&nbsp;<strong>{props.serverURL == null || props.serverURL == "" ? "undefined, env variable is missing or it's empty": props.serverURL}</strong> 
+          Backend server is not reachable on&nbsp;<strong>{props.serverURLSSR == null || props.serverURLSSR == "" ? "undefined, env variable is missing or it's empty": props.serverURLSSR}</strong> 
         </p>
       }
     </>

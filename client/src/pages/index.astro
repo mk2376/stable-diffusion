@@ -4,18 +4,21 @@ import Layout from '../layouts/Layout.astro';
 import { Dashboard } from '../components/stable-diffusion-backend/Dashboard';
 import { self } from '../components/stable-diffusion-backend/api';
 
-const serverURL: string = import.meta.env.SERVER_URL;
-console.debug("serverURL:", serverURL)
+const serverURLSSR: string = import.meta.env.SERVER_URL_SSR;
+console.debug("serverURLSSR:", serverURLSSR)
 
-const serverReachable = await self(serverURL);
+const serverReachable = await self(serverURLSSR);
 console.debug("serverReachable:", serverReachable)
+
+const serverURLClient: string = import.meta.env.SERVER_URL_CLIENT;
+console.debug("serverURLClient:", serverURLClient)
 
 ---
 
 <Layout title="Stable Diffusion">
 	<main>
 		
-		<Dashboard client:visible serverURL={serverURL} serverReachable={serverReachable}></Dashboard>
+		<Dashboard client:visible serverURLSSR={serverURLSSR} serverURLClient={serverURLClient} serverReachable={serverReachable}></Dashboard>
 
 	</main>
 </Layout>

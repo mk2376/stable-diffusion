@@ -1,6 +1,11 @@
 # stable-diffusion
 Stable Diffusion server and client
 
+Build:
+```
+docker-compose build
+```
+
 Start server and client:
 ```
 docker-compose up

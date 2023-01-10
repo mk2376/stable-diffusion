@@ -29,8 +29,6 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
-    environment:
-      SERVER_URL: http://stable-diffusion-server:8080
 
 volumes:
   app-cache:

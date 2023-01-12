@@ -1,19 +1,32 @@
 # stable-diffusion
 Stable Diffusion server and client
 
-Build:
+Build only:
 ```
-docker-compose build
+# CPU or GPU version doesn't matter here
+docker-compose -f docker-compose-cpu.yaml build
 ```
 
 Start server and client:
 ```
-docker-compose up
+# CPU version
+docker-compose -f docker-compose-cpu.yaml up
+
+# GPU version
+docker-compose -f docker-compose-cuda.yaml up
 ```
 or, if you want to start them in background:
 ```
-docker-compose up -d
+# CPU version
+docker-compose -f docker-compose-cpu.yaml up -d
+
+# GPU version
+docker-compose -f docker-compose-cuda.yaml up -d
 ```
 
 Notes:
-- First build will take a lot of time (10 min +).
+- First build will take some time (10 min +).
+
+## License
+
+Project is licensed under the [MIT license](LICENSE).

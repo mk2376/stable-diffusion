@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  stable-diffusion-server:
+    container_name: stable-diffusion-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    command:
+      - "--img_format=png"
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+     - app-cache:/root/.cache
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1 # all
+              capabilities: [ gpu ]
+
+  stable-diffusion-client:
+    container_name: stable-diffusion-client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+
+volumes:
+  app-cache:
+    driver: local

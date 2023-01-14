@@ -24,6 +24,8 @@ docker-compose -f docker-compose-cpu.yaml up -d
 docker-compose -f docker-compose-cuda.yaml up -d
 ```
 
+Web UI is available on [http://localhost:3000/](http://localhost:3000/).
+
 Notes:
 - First build will take some time (10 min +).
 
